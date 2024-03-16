@@ -7,7 +7,7 @@ import (
 	"sync"
 
 	"github.com/golang/freetype/truetype"
-	"github.com/narqo/go-badge/fonts"
+	"github.com/hawl1/go-badge/fonts"
 	"golang.org/x/image/font"
 )
 
