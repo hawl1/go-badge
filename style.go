@@ -8,9 +8,9 @@ var flatTemplate = stripXmlWhitespace(`
     <stop offset="1" stop-opacity=".1"/>
   </linearGradient>
   <clipPath id="r">
-    <rect width="{{.Bounds.Dx}}" height="20" rx="3" fill="#fff" />
+    <rect width="{{.Bounds.Dx}}" height="20" rx="3" fill="#fff"/>
   </clipPath>
-  <g mask="clip-path(#r)">
+  <g clip-path="url(#r)">
     <rect width="{{.Bounds.SubjectDx}}" height="20" fill="#555"/>
     <rect x="{{.Bounds.SubjectDx}}" width="{{.Bounds.StatusDx}}" height="20" fill="{{or .Color "#4c1" | html}}"/>
     <rect width="{{.Bounds.Dx}}" height="20" fill="url(#s)"/>
