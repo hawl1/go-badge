@@ -49,9 +49,9 @@ func (d *badgeDrawer) Render(subject, status string, color Color, w io.Writer) e
 		Color:   color,
 		Bounds: bounds{
 			SubjectDx: subjectDx,
-			SubjectX:  subjectDx/2.0 + 1,
+			SubjectX:  (subjectDx/2.0 + 1) * 10,
 			StatusDx:  statusDx,
-			StatusX:   subjectDx + statusDx/2.0 - 1,
+			StatusX:   (subjectDx + statusDx/2.0 - 1) * 10,
 		},
 	}
 	return d.tmpl.Execute(w, bdg)
