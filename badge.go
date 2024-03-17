@@ -12,10 +12,12 @@ import (
 )
 
 type badge struct {
-	Subject string
-	Status  string
-	Color   Color
-	Bounds  bounds
+	Subject       string
+	Status        string
+	Color         Color
+	Bounds        bounds
+	LabelLength   float64
+	MessageLength float64
 }
 
 type bounds struct {
@@ -43,17 +45,27 @@ func (d *badgeDrawer) Render(subject, status string, color Color, w io.Writer) e
 	statusDx := d.measureString(status)
 	d.mutex.Unlock()
 
+	labelWidth := float64(subjectDx) / 2.0 + 1
+	glyphOffset := float64(extraDx)
+	labelLength := labelWidth - glyphOffset
+
+	messageWidth := float64(statusDx) / 2.0 + 1
+	messageLength := messageWidth - glyphOffset
+
 	bdg := badge{
-		Subject: subject,
-		Status:  status,
-		Color:   color,
+		Subject:       subject,
+		Status:        status,
+		Color:         color,
 		Bounds: bounds{
 			SubjectDx: subjectDx,
 			SubjectX:  (subjectDx/2.0 + 1) * 10,
 			StatusDx:  statusDx,
 			StatusX:   (subjectDx + statusDx/2.0 - 1) * 10,
 		},
+		LabelLength:   labelLength,
+		MessageLength: messageLength,
 	}
+
 	return d.tmpl.Execute(w, bdg)
 }
 
